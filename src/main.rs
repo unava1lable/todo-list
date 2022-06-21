@@ -14,10 +14,16 @@ impl Todo {
     fn insert(&mut self, key: String) {
         self.map.insert(key, false);
     }
+
+    fn list(&self) {
+        for (key, value) in self.map.iter() {
+            println!("{} - {}", key, value);
+        }
+    }
 }
 
 fn main() {
     let mut todo = Todo::new();
     todo.insert("Exam".to_string());
-    println!("{:?}", todo.map);
+    todo.list();
 }
