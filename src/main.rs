@@ -71,6 +71,9 @@ impl Cli {
 				}
 				TODO.lock().save().expect("Failed to save");
 			},
+			"list" => {
+				TODO.lock().list();
+			},
 			_ => println!("Not a valid action"),
 		}
 	}
