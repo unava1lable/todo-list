@@ -57,6 +57,13 @@ impl Cli {
 				}
 				TODO.lock().save().expect("Failed to save");
 			},
+			"complete" => {
+				match &self.object {
+					Some(object) => TODO.lock().complete(object.clone()),
+					None => println!("Need an object"),
+				}
+				TODO.lock().save().expect("Failed to save");
+			},
 			_ => println!("Not a valid action"),
 		}
 	}
@@ -66,6 +73,7 @@ fn print_help() {
 	println!("Usage: <action> [command]");
 	println!("add <object>: add a new todo item");
 	println!("delete <object>: if the specified item exists, delete it");
+	println!("complete <object>: mark that the object is done");
 	println!("list: list all items");
 }
 

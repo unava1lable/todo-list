@@ -64,4 +64,16 @@ impl Todo {
             None => println!("Key {} is not present", key),
         }
     }
+
+    pub fn complete(&mut self, key: String) {
+        if let Some(is_done) = self.map.get(&key) {
+            if *is_done {
+                println!("Object <{}> is already done!", key);
+            } else {
+                self.map.insert(key, true);
+            }
+        } else {
+            println!("No object named <{}>!", key);
+        }
+    }
 }
