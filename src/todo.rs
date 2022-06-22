@@ -76,4 +76,16 @@ impl Todo {
             println!("No object named <{}>!", key);
         }
     }
+
+    pub fn todo(&mut self, key: String) {
+        if let Some(is_done) = self.map.get(&key) {
+            if *is_done {
+                self.map.insert(key, false);
+            } else {
+                println!("Object <{}> is not done!", key);
+            }
+        } else {
+            println!("No object named <{}>!", key);
+        }
+    }
 }
