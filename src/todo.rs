@@ -12,11 +12,11 @@ impl Todo {
         }
     }
 
-    fn insert_new(&mut self, key: String) {
+    pub fn insert_new(&mut self, key: String) {
         self.map.insert(key, false);
     }
 
-    fn list(&self) {
+    pub fn list(&self) {
         for (key, value) in self.map.iter() {
             println!("{} - {}", key, value);
         }
@@ -33,7 +33,7 @@ impl Todo {
         Ok(())
     }
 
-    pub fn read() -> Self {
+    fn read() -> Self {
         let mut map: HashMap<String, bool> = HashMap::new();
         let contents = fs::read_to_string("todo.txt").expect("Can not open todo.txt");
         for line in contents.split('\n').filter(|&str| str != "") {
