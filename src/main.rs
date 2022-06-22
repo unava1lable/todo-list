@@ -45,9 +45,26 @@ impl Todo {
             map,
         }
     }
+
+    fn init() -> Self {
+        if let Err(_) = fs::File::open("todo.txt") {
+            Todo::new()
+        } else {
+            Todo::read()
+        }
+    }
+
+    fn delete(&mut self, key: String) {
+        match self.map.remove(&key) {
+            Some(_) => println!("Removed done!"),
+            None => println!("Key {} is not present", key),
+        }
+    }
 }
 
 fn main() {
-    let todo = Todo::read();
-    todo.list();
+    let mut todo = Todo::init();
+    todo.delete("Coding".to_string());
+    todo.delete("Coding".to_string());
+    todo.save();
 }
