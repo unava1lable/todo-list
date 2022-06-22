@@ -13,7 +13,11 @@ impl Todo {
     }
 
     pub fn insert_new(&mut self, key: String) {
-        self.map.insert(key, false);
+        if let Some(_) = self.map.get(&key) {
+            println!("Key <{}> already exists, if you want to update it, using 'complete' or 'todo'", key);
+        } else {
+            self.map.insert(key, false);
+        }
     }
 
     pub fn list(&self) {
